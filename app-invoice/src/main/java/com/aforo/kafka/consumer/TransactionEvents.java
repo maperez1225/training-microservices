@@ -4,6 +4,7 @@ import com.aforo.dao.InvoiceDao;
 import com.aforo.model.Invoice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Optional;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,12 @@ public class TransactionEvents {
         event.setState(1);
    		log.info("Se ha pagado la factura # " + event.getIdInvoice());
 
-        _dao.save(event);
+        Optional<Invoice> invoiceOptional = _dao.findById(event.getIdInvoice());
+        if (invoiceOptional.isPresent()) {
+            Invoice invoice = invoiceOptional.get();
+            invoice.setAmount(event.getAmount() + invoice.getAmount());
+            _dao.save(invoice);
+        } else
+            _dao.save(event);
     }
 }
