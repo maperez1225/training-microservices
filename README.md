@@ -1,3 +1,11 @@
+# sd-workshop4 2024-1
+
+Service Registration in Consul:
+![alt text](resources/consul.png)
+
+Consul services query with dig:
+![alt text](resources/consul-query.png)
+
 # sd-workshop1 2024-1
 ### Dependencies:
 Build database for invoice service using postgres. [Directory](https://github.com/maperez1225/sd-workshop1/tree/master/resources/postgres).
