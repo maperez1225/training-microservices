@@ -18,7 +18,7 @@ docker run -d --rm --name app-pay --network distribuidos -p 8010:8010 maperez122
 
 docker run -d --rm --name app-transaction --network distribuidos -p 8082:8082 maperez1225/app-transaction:0.0.1;
 
-docker run -d --rm --name haproxy --network distribuidos -p 1936:1936 loadbalancer:0.0.1;
+docker run -d --rm --name loadbalancer --network distribuidos -p 1936:1936 -p 80:80 loadbalancer:0.0.1;
 
 docker run -d --rm --name express-gateway-data-store --network distribuidos -p 6379:6379 redis:alpine;
 

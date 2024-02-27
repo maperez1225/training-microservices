@@ -4,10 +4,24 @@ Create load balancer image in haproxy/
 `docker build -t loadbalancer:0.0.1 .`
 
 Run redis db for app gateway
+
 `docker run -d --rm -p 6379:6379 --network distribuidos --name express-gateway-data-store redis:alpine`
 
 Run app gateway
 
+`docker run -d --rm --name express-gateway --network distribuidos -p 8080:8080 -p 9876:9876 -v ./appgw:/var/lib/eg express-gateway`
+
+Obtain API key from Express Gateway terminal
+
+`eg credentials create -c [user] -t key-auth -q`
+
+Curl API endpoint with key
+
+`curl -H "Authorization: apiKey ${keyId}:${keySecret}" http://localhost:8080/config/app-pay/dev`
+![alt text](resources/appgw.png)
+
+Containers running
+![alt text](resources/containers.png)
 
 # sd-workshop4 2024-1
 
