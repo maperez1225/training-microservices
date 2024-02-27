@@ -1,3 +1,14 @@
+# sd-workshop5 2024-1
+Create load balancer image in haproxy/
+
+`docker build -t loadbalancer:0.0.1 .`
+
+Run redis db for app gateway
+`docker run -d --rm -p 6379:6379 --network distribuidos --name express-gateway-data-store redis:alpine`
+
+Run app gateway
+
+
 # sd-workshop4 2024-1
 
 Service Registration in Consul:
